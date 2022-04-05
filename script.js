@@ -16,29 +16,46 @@ function computerPlay(){
     }
 }
 
+
 function playMatch(playerSelection, computerSelection){
 
-    playerSelection =  playerSelection.substring(0,1).toUpperCase() + 
+    playerSelection =  playerSelection.substring(0,1).toUpperCase() +  // takes player input and capitalizes the first letter, and makes the rest lowercase
             playerSelection.substring(1,).toLowerCase();
     
-    if (playerSelection == computerSelection){
-        return "You Tied!";
+    if (playerSelection == computerSelection){ // tie condition checking
+        return 0;
     }
-    else if ((playerSelection == "Rock" && computerSelection == "Scissors") ||
+    else if ((playerSelection == "Rock" && computerSelection == "Scissors") ||  // win condition checking
     (playerSelection == "Scissors" && computerSelection == "Paper") ||
     (playerSelection == "Paper" && computerSelection == "Rock")) {
-        return `You Win! ${playerSelection} beats ${computerSelection}.`;
+        return 1;
     }
-    else if ((playerSelection == "Rock" && computerSelection == "Paper") ||
+    else if ((playerSelection == "Rock" && computerSelection == "Paper") || // lose condition checking
     (playerSelection == "Scissors" && computerSelection == "Rock") ||
     (playerSelection == "Paper" && computerSelection == "Scissors")) {
-        return `You Lose! ${computerSelection} beats ${playerSelection}.`;
+        return -1;
     }
     else {
         return "invalid input";
     }
+}
 
+
+function game(){
+
+    let matchNumber = window.prompt("How many matches?", "5");
+    
+    if (+matchNumber === NaN){
+        window.alert("Invalid Input!");
+        break;
+    } else {
+        for (let i = 0; i < matchNumber; i++;){
+            let PlayerSelection = window.prompt("Rock, Paper, or Scissors?","");
+            let computerSelection = computerPlay();
+
+        }
+    }
 
 }
 
-console.log(playMatch(window.prompt("Choose Rock, Paper, or Scissors", ),computerPlay()));
+console.log(+"hello");
