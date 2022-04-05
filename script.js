@@ -17,7 +17,7 @@ function computerPlay(){
 }
 
 function promptCleaner(text) {
-    text =  text.substring(0,1).toUpperCase() +  // takes player input and capitalizes the first letter, and makes the rest lowercase
+    return text.substring(0,1).toUpperCase() +  // takes player input and capitalizes the first letter, and makes the rest lowercase
             text.substring(1,).toLowerCase();
 }
 
@@ -51,10 +51,10 @@ function game(){
 
     if (+matchNumber === NaN){
         window.alert("Invalid Input!");
-        break;
     } else {
-        for (let i = 0; i < matchNumber; i++;){
-            let playerSelection = promptCleaner(window.prompt("Rock, Paper, or Scissors?",""));
+        for (let i = 0; i < matchNumber; i++){
+            let playerSelection = window.prompt("Rock, Paper, or Scissors?","");
+            playerSelection = promptCleaner(playerSelection);
             let computerSelection = computerPlay();
 
             let result = playMatch(playerSelection, computerSelection);
@@ -87,3 +87,5 @@ function game(){
     }
 
 }
+
+game()
