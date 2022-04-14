@@ -1,4 +1,27 @@
 
+
+
+//initialize variables
+let playerSelection = "";
+const rpsButtons = document.querySelectorAll(".rps-buttons");
+const playerScore = document.querySelector("#player-score");
+const computerScore = document.querySelector("#computer-score");
+playerScore.textContent = 0;
+computerScore.textContent = 0;
+
+// event listeners for rps buttons
+// runs game()
+for (let i = 0; i < rpsButtons.length; i++){
+    rpsButtons[i].addEventListener('click', () => {
+        playerSelection = rpsButtons[i].textContent;
+        game(playerSelection);
+    });
+}
+
+
+
+
+
 // returns Rock, Paper, or Scissors by random for computer's selection
 function computerPlay(){
     let selection = Math.floor(Math.random() * 3);
@@ -18,6 +41,7 @@ function computerPlay(){
 
 // plays single match of rock paper scissors
 // returns 0 for tie, 1 for win, 2 for lose
+// return value is used in switch in game()
 function playMatch(playerSelection, computerSelection){
     
     if (playerSelection == computerSelection){ // tie condition checking => returns 0
@@ -39,55 +63,40 @@ function playMatch(playerSelection, computerSelection){
 }
 
 
-
-let playerSelection = "";
-
-
-const rpsButtons = document.querySelectorAll(".rps-buttons");
-for (let i = 0; i < rpsButtons.length; i++){
-    rpsButtons[i].addEventListener('click', () => {
-        playerSelection = rpsButtons[i].textContent;
-        game(playerSelection);
-    });
-}
-
-
-
-
+// main game function
+// outputs result and returns 0 for tie, 1 for win, 2 for lose <= used in score
 function game(playerSelection){
 
     const output = document.querySelector("#output"); 
-
     computerSelection = computerPlay();
-    let playerScore = 0;
-    let computerScore = 0;
     let result = playMatch(playerSelection, computerSelection);
 
+    // outputs result string and returns outcome
     switch (result) {
-        case 0:
-            output.textContent = `It's a tie! Score: ${playerScore} - ${computerScore}\n`; // "It's a tie! Score: 0 - 0"
+        case 0: // tie
+            output.textContent = `It's a tie!`; // "It's a tie!"
             break;
-        case 1:
-            playerScore += 1;
-            output.textContent = `${playerSelection} beats ${computerSelection}!\nScore: ${playerScore} - ${computerScore}\n`; // "Rock beats Scissors! Score: 1 - 0"
+        case 1: // player wins
+            output.textContent = `${playerSelection} beats ${computerSelection}!`; // "Rock beats Scissors!"
+            playerScore.textContent = +playerScore.textContent + 1;
             break;
-        case 2:
-            computerScore += 1;
-            output.textContent = `${playerSelection} loses to ${computerSelection}!\nScore: ${playerScore} - ${computerScore}\n`; // "Rock loses to Paper! Score: 0 - 1"
+        case 2:  // computer wins
+            output.textContent = `${playerSelection} loses to ${computerSelection}!`; // "Rock loses to Paper!"
+            computerScore.textContent = +computerScore.textContent + 1;
             break;
         case 3:
-            computerScore += 1;
             output.textContent = `Invalid input. Computer wins match by default. Score: ${playerScore} - ${computerScore}`;
             break;
     }
 
-    if (playerScore > computerScore){
-        console.log("You Win!");
-    } else if (computerScore > playerScore){
-        console.log("You lose!");
-    } else {
-        console.log("You tied!");
-    }
+
+    // if (playerScore > computerScore){
+    //     console.log("You Win!");
+    // } else if (computerScore > playerScore){
+    //     console.log("You lose!");
+    // } else {
+    //     console.log("You tied!");
+    // }
 
 }
 

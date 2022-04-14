@@ -4,17 +4,27 @@
 		<meta charset="UTF-8">
 		<title>Rock Paper Scissors</title>
         <script src="script.js" defer></script>
+		<link rel="stylesheet" href="style.css">
 	</head>
 	
 	<body>
-		<div id="output"></div>
-		<table>
-			<tr>
-				<th><button class="rps-buttons" id="rock">Rock</button></th>
-				<th><button class="rps-buttons" id="paper">Paper</button></th>
-				<th><button class="rps-buttons" id="scissors">Scissors</button></th>
-			</tr>
-		</table>
+		<div class="page">
+			<h1 class="heading">Rock, Paper, Scissors</h1>
+			<div class="game">
+				<div class="buttons">
+					<button class="rps-buttons" id="rock">Rock</button>
+					<button class="rps-buttons" id="paper">Paper</button>
+					<button class="rps-buttons" id="scissors">Scissors</button>
+				</div>
 
+				<div class="images">
+					<div class="player-move"></div>
+					<div class="computer-move"></div>
+				</div>
+
+				<div id="score"><span id="player-score"></span> - <span id="computer-score"></span></div>
+				<div id="output"></div>
+			</div>
+		</div>
 	</body>
 </html>
