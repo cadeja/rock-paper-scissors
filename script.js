@@ -1,6 +1,5 @@
 
-// returns Rock, Paper, or Scissors by random
-
+// returns Rock, Paper, or Scissors by random for computer's selection
 function computerPlay(){
     let selection = Math.floor(Math.random() * 3);
     switch (selection) {
@@ -16,12 +15,9 @@ function computerPlay(){
     }
 }
 
-function promptCleaner(text) {
-    return text.substring(0,1).toUpperCase() +  // takes player input and capitalizes the first letter, and makes the rest lowercase
-            text.substring(1,).toLowerCase();
-}
 
-
+// plays single match of rock paper scissors
+// returns 0 for tie, 1 for win, 2 for lose
 function playMatch(playerSelection, computerSelection){
     
     if (playerSelection == computerSelection){ // tie condition checking => returns 0
@@ -43,39 +39,46 @@ function playMatch(playerSelection, computerSelection){
 }
 
 
-function game(){
 
-    let matchNumber = window.prompt("How many matches?", "5");
+let playerSelection = "";
+
+
+const rpsButtons = document.querySelectorAll(".rps-buttons");
+for (let i = 0; i < rpsButtons.length; i++){
+    rpsButtons[i].addEventListener('click', () => {
+        playerSelection = rpsButtons[i].textContent;
+        game(playerSelection);
+    });
+}
+
+
+
+
+function game(playerSelection){
+
+    const output = document.querySelector("#output"); 
+
+    computerSelection = computerPlay();
     let playerScore = 0;
     let computerScore = 0;
+    let result = playMatch(playerSelection, computerSelection);
 
-    if (+matchNumber === NaN){
-        window.alert("Invalid Input!");
-    } else {
-        for (let i = 0; i < matchNumber; i++){
-            let playerSelection = window.prompt("Rock, Paper, or Scissors?","");
-            playerSelection = promptCleaner(playerSelection);
-            let computerSelection = computerPlay();
-
-            let result = playMatch(playerSelection, computerSelection);
-            switch (result) {
-                case 0:
-                    console.log(`It's a tie! Score: ${playerScore} - ${computerScore}\n`); // "It's a tie! Score: 0 - 0"
-                    break;
-                case 1:
-                    playerScore += 1;
-                    console.log(`${playerSelection} beats ${computerSelection}!\nScore: ${playerScore} - ${computerScore}\n`); // "Rock beats Scissors! Score: 1 - 0"
-                    break;
-                case 2:
-                    computerScore += 1;
-                    console.log(`${playerSelection} loses to ${computerSelection}!\nScore: ${playerScore} - ${computerScore}\n`); // "Rock loses to Paper! Score: 0 - 1"
-                    break;
-                case 3:
-                    computerScore += 1;
-                    console.log(`Invalid input. Computer wins match by default. Score: ${playerScore} - ${computerScore}`);
-                    break;
-            }
-        }
+    switch (result) {
+        case 0:
+            output.textContent = `It's a tie! Score: ${playerScore} - ${computerScore}\n`; // "It's a tie! Score: 0 - 0"
+            break;
+        case 1:
+            playerScore += 1;
+            output.textContent = `${playerSelection} beats ${computerSelection}!\nScore: ${playerScore} - ${computerScore}\n`; // "Rock beats Scissors! Score: 1 - 0"
+            break;
+        case 2:
+            computerScore += 1;
+            output.textContent = `${playerSelection} loses to ${computerSelection}!\nScore: ${playerScore} - ${computerScore}\n`; // "Rock loses to Paper! Score: 0 - 1"
+            break;
+        case 3:
+            computerScore += 1;
+            output.textContent = `Invalid input. Computer wins match by default. Score: ${playerScore} - ${computerScore}`;
+            break;
     }
 
     if (playerScore > computerScore){
@@ -88,4 +91,4 @@ function game(){
 
 }
 
-game()
+
