@@ -1,4 +1,58 @@
 * {
-    border: 1px solid red;
+    /*border: 1px solid red;*/
+    font-family:'Courier New', Courier, monospace;
 }
 
+img {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+}
+
+button {
+    font-size: 24px;
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+}
+
+.heading {
+align-self: center;
+}
+
+.game {
+    display: flex;
+    font-size: 24px;
+}
+
+.rps-buttons {
+    display: flex;
+    flex-direction: column;
+    margin:20px;
+}
+
+.game-display {
+    display: flex;
+}
+
+.images {
+    display: flex;
+}
+
+.image {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    border: 5px solid red;
+}
+
+.stats{
+    display:flex;
+    flex-direction: column;
+}
+
+#score #output{
+    margin:20px;
+}

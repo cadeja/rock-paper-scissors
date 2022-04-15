@@ -15,10 +15,9 @@ for (let i = 0; i < rpsButtons.length; i++){
     rpsButtons[i].addEventListener('click', () => {
         playerSelection = rpsButtons[i].textContent;
         game(playerSelection);
+        document.getElementById("player-move").src = `images/${rpsButtons[i].textContent}.jpg`;
     });
 }
-
-
 
 
 
@@ -70,18 +69,19 @@ function game(playerSelection){
     const output = document.querySelector("#output"); 
     computerSelection = computerPlay();
     let result = playMatch(playerSelection, computerSelection);
+    document.getElementById("computer-move").src = `images/${computerSelection}.jpg`;
 
     // outputs result string and returns outcome
     switch (result) {
         case 0: // tie
-            output.textContent = `It's a tie!`; // "It's a tie!"
+            output.textContent += `It's a tie!\n`; // "It's a tie!"
             break;
         case 1: // player wins
-            output.textContent = `${playerSelection} beats ${computerSelection}!`; // "Rock beats Scissors!"
+            output.textContent += `${playerSelection} beats ${computerSelection}!\n`; // "Rock beats Scissors!"
             playerScore.textContent = +playerScore.textContent + 1;
             break;
         case 2:  // computer wins
-            output.textContent = `${playerSelection} loses to ${computerSelection}!`; // "Rock loses to Paper!"
+            output.textContent += `${playerSelection} loses to ${computerSelection}!\n`; // "Rock loses to Paper!"
             computerScore.textContent = +computerScore.textContent + 1;
             break;
         case 3:

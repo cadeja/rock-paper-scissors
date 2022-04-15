@@ -17,13 +17,22 @@
 					<button class="rps-buttons" id="scissors">Scissors</button>
 				</div>
 
-				<div class="images">
-					<div class="player-move"></div>
-					<div class="computer-move"></div>
+				<div class="game-display">
+					<div class="images">
+						<div class="image">
+							You
+							<img id="player-move" src="">
+						</div>
+						<div class="image">
+							The Enemy
+							<img id="computer-move" src="">
+						</div>
+					</div>
+					<div class="stats">
+						<div id="score"><span id="player-score"></span> - <span id="computer-score"></span></div>
+						<div id="output"></div>
+					</div>
 				</div>
-
-				<div id="score"><span id="player-score"></span> - <span id="computer-score"></span></div>
-				<div id="output"></div>
 			</div>
 		</div>
 	</body>
